@@ -9,6 +9,16 @@ const routes = [
         name: "Home",
         component: () => import("src/pages/main/HomePage.vue"),
       },
+      {
+        path: "/discussions",
+        name: "Discussions",
+        component: () => import("src/pages/main/DiscussionsPage.vue"),
+      },
+      {
+        path: "/discussions/create",
+        name: "Create Topic",
+        component: () => import("src/pages/main/CreateTopic.vue"),
+      },
     ],
   },
 

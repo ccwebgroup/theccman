@@ -1,5 +1,7 @@
 <template>
-  <q-page padding>
+  <q-page class="bg-main">
+    <img src="~assets/svg/bg-img.svg" alt="" class="absolute" />
+
     <q-card
       flat
       class="q-mb-xl q-mx-auto bg-transparent"
@@ -98,7 +100,7 @@
       </div>
     </div>
 
-    <div class="language-section q-mb-lg">
+    <div class="language-section">
       <div class="text-h5 text-bold text-white text-center q-mb-md">
         Programming Languages & Frameworks
       </div>
@@ -121,12 +123,39 @@
         </div>
       </div>
     </div>
+
+    <div class="bg-primary text-white absolute-bottom">
+      <q-toolbar class="q-py-sm">
+        <q-toolbar-title class="text-center">
+          <div class="text-subtitle2">theccman.com</div>
+          <div class="text-caption">All rights reserved. 2022</div>
+          <div style="font-size: 10px">
+            Icons made by
+            <a
+              class="text-warning"
+              style="text-decoration: none"
+              href="https://www.freepik.com"
+              title="Freepik"
+              >Freepik</a
+            >
+            from
+            <a
+              class="text-warning"
+              href="https://www.flaticon.com/"
+              title="Flaticon"
+              style="text-decoration: none"
+              >www.flaticon.com</a
+            >
+          </div>
+        </q-toolbar-title>
+      </q-toolbar>
+    </div>
   </q-page>
 </template>
 
 <style lang="sass" scope>
 .catchy-line
-  margin-top:7%
+  padding-top:7%
   color: white
 // .newsletter-section
 //   margin-top: 20px
@@ -134,6 +163,7 @@
   margin-top: 100px
 .language-section
   margin-top: 100px
+  padding-bottom: 100px
 .language-pill
   height: 60px
   width: 150px
