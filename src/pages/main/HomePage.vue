@@ -1,56 +1,91 @@
 <template>
   <q-page class="bg-main">
-    <img src="~assets/svg/bg-img.svg" alt="" class="absolute" />
+    <!-- <img src="~assets/svg/bg-img.svg" alt="" class="absolute" /> -->
+    <div class="row justify-around q-pt-xl">
+      <Vue3Lottie
+        :class="
+          $q.platform.is.mobile ? 'coding-on-mobile' : 'coding-on-desktop'
+        "
+        class="absolute"
+        style="opacity: 0.5"
+        :animationData="codingLottie"
+        :height="700"
+        :width="700"
+      />
+      <div class="col-12 col-md-auto">
+        <q-card flat class="bg-transparent">
+          <q-card-section class="catchy-line">
+            <transition
+              appear
+              enter-active-class="animated fadeInLeft"
+              :duration="1000"
+            >
+              <div v-show="show">
+                <div class="text-h3 text-bold">Everything you need</div>
+                <div class="text-h4">to build a web or mobile apps.</div>
+              </div>
+            </transition>
+            <transition
+              appear
+              enter-active-class="animated fadeIn"
+              :duration="10000"
+            >
+              <q-btn
+                padding="sm xl"
+                size="lg"
+                class="text-bold q-mt-sm"
+                text-color="dark"
+                color="yellow-9"
+                no-caps
+                label="Get Qoutes"
+              />
+            </transition>
+          </q-card-section>
+        </q-card>
 
-    <q-card
-      flat
-      class="q-mb-xl q-mx-auto bg-transparent"
-      style="max-width: 1100px"
-    >
-      <q-card-section class="catchy-line">
-        <div class="text-h3 text-bold">Everything you need</div>
-        <div class="text-h4">to build a web or mobile apps.</div>
-        <q-btn
-          padding="sm xl"
-          size="lg"
-          class="text-bold q-mt-sm"
-          text-color="dark"
-          color="yellow-9"
-          no-caps
-          label="Get Qoutes"
-        />
-      </q-card-section>
-    </q-card>
+        <div class="newsletter-section q-pt-md q-mt-lg q-mx-sm">
+          <q-card class="q-mx-auto q-mb-xl bg-grey-5" style="max-width: 450px">
+            <q-card-section class="text-center q-pa-lg">
+              <div class="q-mb-sm text-subtitle1 text-bold">
+                Enter your email to join the newsletter!
+              </div>
+              <q-input
+                dense
+                type="email"
+                color="white"
+                bg-color="white"
+                outlined
+                placeholder="Enter your email"
+              >
+                <template v-slot:after>
+                  <q-btn flat color="white" icon="send" />
+                </template>
+              </q-input>
+            </q-card-section>
+          </q-card>
+        </div>
+      </div>
 
-    <div class="newsletter-section q-pt-md">
-      <q-card class="q-mx-auto q-mb-xl bg-grey-5" style="max-width: 450px">
-        <q-card-section class="text-center q-pa-lg">
-          <div class="q-mb-sm text-subtitle1 text-bold">
-            Enter your email to join the newsletter!
-          </div>
-          <q-input
-            type="email"
-            color="white"
-            bg-color="white"
-            outlined
-            placeholder="Enter your email"
-          >
-            <template v-slot:after>
-              <q-btn flat color="white" icon="send" />
-            </template>
-          </q-input>
-        </q-card-section>
-      </q-card>
+      <div class="col-12 col-md-2">
+        <!-- <q-avatar size="250px" class="bg-avatar">
+          <img src="~assets/img/image-1.png" alt="" />
+        </q-avatar> -->
+      </div>
     </div>
 
     <div class="skill-section">
-      <div class="text-h3 text-white text-center q-mb-lg">What I do</div>
+      <div class="text-h3 text-white text-center q-my-lg">What I do</div>
       <div class="row q-gutter-md justify-center">
         <!-- UX/UI Definitions -->
         <div class="col-11 col-md-3">
-          <q-card class="bg-primary" dark style="height: 370px">
-            <q-card-section class="text-center">
-              <img src="~assets/icons/layers.png" alt="" />
+          <q-card class="bg-primary" dark style="height: 390px">
+            <q-card-section class="text-center q-py-none">
+              <Vue3Lottie
+                :animationData="websiteLottie"
+                :height="120"
+                :width="120"
+              />
+              <!-- <img src="~assets/icons/layers.png" alt="" /> -->
               <div class="text-subtitle1 text-bold">UX/UI Design</div>
             </q-card-section>
             <q-card-section>
@@ -66,9 +101,14 @@
         </div>
         <!-- Backend Development -->
         <div class="col-11 col-md-3">
-          <q-card class="bg-primary" dark style="height: 370px">
+          <q-card class="bg-primary" dark style="height: 390px">
             <q-card-section class="text-center">
-              <img src="~assets/icons/coding.png" alt="" />
+              <!-- <img src="~assets/icons/coding.png" alt="" /> -->
+              <Vue3Lottie
+                :animationData="backendLottie"
+                :height="120"
+                :width="120"
+              />
               <div class="text-subtitle1 text-bold">Backend Development</div>
             </q-card-section>
             <q-card-section>
@@ -82,9 +122,14 @@
           </q-card>
         </div>
         <div class="col-11 col-md-3">
-          <q-card class="bg-primary" dark style="height: 370px">
+          <q-card class="bg-primary" dark style="height: 390px">
             <q-card-section class="text-center">
-              <img src="~assets/icons/seo.png" alt="" />
+              <!-- <img src="~assets/icons/seo.png" alt="" /> -->
+              <Vue3Lottie
+                :animationData="seoLottie"
+                :height="120"
+                :width="120"
+              />
               <div class="text-subtitle1 text-bold">SEO Handling</div>
             </q-card-section>
             <q-card-section>
@@ -101,7 +146,8 @@
     </div>
 
     <div class="language-section">
-      <div class="text-h5 text-bold text-white text-center q-mb-md">
+      <Vue3Lottie :animationData="coding2Lottie" :height="300" :width="300" />
+      <div class="text-h4 text-bold text-white text-center q-mb-lg">
         Programming Languages & Frameworks
       </div>
       <div class="flex flex-center q-gutter-sm">
@@ -154,11 +200,18 @@
 </template>
 
 <style lang="sass" scope>
+.coding-on-desktop
+  right: 30px
+  top: -80px
+.coding-on-mobile
+  top: 250px
+.bg-avatar
+  background-color: #700a30a8
 .catchy-line
-  padding-top:7%
+  padding-top:5%
   color: white
-// .newsletter-section
-//   margin-top: 20px
+.newsletter-section
+   margin-top: 20px
 .skill-section
   margin-top: 100px
 .language-section
@@ -170,6 +223,13 @@
 </style>
 
 <script setup>
+import { onMounted, ref } from "vue";
+import codingLottie from "src/lottie/coding.json";
+import coding1Lottie from "src/lottie/coding-1.json";
+import websiteLottie from "src/lottie/website.json";
+import backendLottie from "src/lottie/backend.json";
+import seoLottie from "src/lottie/seo.json";
+import coding2Lottie from "src/lottie/97639-coding.json";
 const languages = [
   { icon: "src/assets/svg/vue-logo.svg", name: "Vue" },
   { icon: "src/assets/svg/firebase-logo.svg", name: "Firebase" },
@@ -180,4 +240,12 @@ const languages = [
   { icon: "src/assets/svg/css-logo.svg", name: "CSS" },
   { icon: "src/assets/svg/graphql-logo.svg", name: "GraphQL" },
 ];
+
+const show = ref(false);
+
+onMounted(() => {
+  setTimeout(() => {
+    show.value = true;
+  }, 1000);
+});
 </script>
