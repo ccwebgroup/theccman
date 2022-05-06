@@ -3,11 +3,11 @@
 node_modules
 
 # Firebase related files
-/src/boot/
+/src/boot/firebase.js
 
 # Quasar core related directories
 .quasar
-/dist/firebase.js
+/dist
 
 # Cordova related directories and files
 /src-cordova/node_modules
