@@ -2,22 +2,49 @@ const routes = [
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
-
+    redirect: "/home",
     children: [
       {
-        path: "",
+        path: "/home",
         name: "Home",
-        component: () => import("src/pages/main/HomePage.vue"),
+        component: () => import("pages/main/HomePage.vue"),
       },
       {
         path: "/discussions",
         name: "Discussions",
-        component: () => import("src/pages/main/DiscussionsPage.vue"),
+        component: () => import("pages/main/DiscussionsPage.vue"),
       },
       {
         path: "/discussions/create",
         name: "Create Topic",
-        component: () => import("src/pages/main/CreateTopic.vue"),
+        component: () => import("pages/main/CreateTopic.vue"),
+      },
+      {
+        path: "/projects",
+        name: "Projects",
+        component: () => import("pages/main/ProjectsPage.vue"),
+      },
+    ],
+  },
+
+  // Admin Routes
+  {
+    path: "/admin",
+    component: () => import("layouts/AdminLayout.vue"),
+    // meta: {
+    //   requiresAdmin: true,
+    // },
+    redirect: "/admin/dashboard",
+    children: [
+      {
+        path: "/admin/dashboard",
+        name: "Dashboard",
+        component: () => import("pages/admin/DashboardPage.vue"),
+      },
+      {
+        path: "/admin/manage-projects",
+        name: "Manage Projects",
+        component: () => import("pages/admin/ManageProjects.vue"),
       },
     ],
   },

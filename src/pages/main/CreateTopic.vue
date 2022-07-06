@@ -1,12 +1,13 @@
 <template>
-  <q-page>
+  <q-page padding>
     <div class="q-px-lg q-mt-md">
       <q-card flat class="bg-transparent q-mt-sm">
         <q-card-actions>
-          <div class="text-h5">Create Topic</div>
+          <div class="text-h6">Create topic to discuss.</div>
           <q-space />
           <q-btn
-            :disable="discussionForm.title && discussionForm.content"
+            @click="post"
+            :disable="disablePost"
             padding="sm 50px"
             color="primary"
             rounded
@@ -29,10 +30,10 @@
             v-model="discussionForm.title"
             placeholder="What's the headline?"
             outlined
-            rounded
             maxlength="86"
             counter
             style="max-width: 750px"
+            :rules="[(val) => !!val || 'Headline is required!']"
           />
           <q-editor
             :dense="$q.screen.lt.md"
@@ -48,10 +49,19 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 import { useQuasar } from "quasar";
+import { topicStore } from "stores/topics";
 
 const $q = useQuasar();
+
+const post = () => topicStore().addTopic({ ...discussionForm });
+
+const disablePost = computed(() => {
+  if (discussionForm.title.length > 10 && discussionForm.content.length > 50)
+    return false;
+  else return true;
+});
 
 const discussionForm = reactive({
   title: "",

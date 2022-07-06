@@ -1,57 +1,94 @@
 <template>
   <q-page class="bg-main">
-    <img src="~assets/svg/bg-img.svg" alt="" class="absolute" />
+    <q-img src="~assets/jpg/tech-bg.jpg" alt="" class="absolute bg-tech" />
 
-    <q-card
-      flat
-      class="q-mb-xl q-mx-auto bg-transparent"
-      style="max-width: 1100px"
-    >
-      <q-card-section class="catchy-line">
-        <div class="text-h3 text-bold">Everything you need</div>
-        <div class="text-h4">to build a web or mobile apps.</div>
-        <q-btn
-          padding="sm xl"
-          size="lg"
-          class="text-bold q-mt-sm"
-          text-color="dark"
-          color="yellow-9"
-          no-caps
-          label="Get Qoutes"
-        />
-      </q-card-section>
-    </q-card>
+    <div class="row justify-center">
+      <div class="col-12 col-md-6">
+        <q-card
+          dark
+          flat
+          class="q-mb-xl q-mx-auto bg-transparent"
+          style="max-width: 1100px"
+        >
+          <q-card-section class="catchy-line">
+            <div class="text-h2 text-bold">
+              Full-stack <span class="text-accent">Developer</span>
+            </div>
+            <div class="text-h4">Web, mobile or desktop app development</div>
+            <q-btn
+              to="/projects"
+              padding="sm xl"
+              size="lg"
+              class="text-bold q-mt-xl"
+              text-color="dark"
+              color="yellow-9"
+              no-caps
+              label="View Projects"
+            />
+          </q-card-section>
 
-    <div class="newsletter-section q-pt-md">
-      <q-card class="q-mx-auto q-mb-xl bg-grey-5" style="max-width: 450px">
-        <q-card-section class="text-center q-pa-lg">
-          <div class="q-mb-sm text-subtitle1 text-bold">
-            Enter your email to join the newsletter!
-          </div>
-          <q-input
-            type="email"
-            color="white"
-            bg-color="white"
-            outlined
-            placeholder="Enter your email"
-          >
-            <template v-slot:after>
-              <q-btn flat color="white" icon="send" />
-            </template>
-          </q-input>
-        </q-card-section>
-      </q-card>
+          <q-card-section class="q-mt-lg">
+            <div class="text-subtitle1">
+              “Full Stack Developer with a hands-on experience designing,
+              developing, and implementing applications and solutions using a
+              range of technologies and programming languages. Seeking to
+              leverage broad development experience and hands-on technical
+              expertise in a challenging role as a Full-stack Developer.”
+            </div>
+            <div class="text-h6 text-right">- CLINT B. CLARIDO</div>
+          </q-card-section>
+        </q-card>
+      </div>
+      <div class="col-12 col-md-5 column items-center">
+        <q-img class="q-mt-md" width="260px" src="~assets/png/clint.png" />
+
+        <div class="newsletter-section q-mt-lg">
+          <q-card dark class="bg-overlay newsletter-card">
+            <q-card-section class="text-center q-px-lg">
+              <div class="q-mb-sm text-subtitle1 text-warning">
+                Subscribe by sending your email!
+              </div>
+              <q-form @submit="addEmail">
+                <q-input
+                  v-model="guestEmail"
+                  dark
+                  color="warning"
+                  type="email"
+                  outlined
+                  dense
+                  placeholder="Enter your email"
+                  :loading="emailLoading"
+                >
+                  <template v-slot:after>
+                    <q-btn
+                      @click="addEmail"
+                      round
+                      flat
+                      color="white"
+                      icon="send"
+                    />
+                  </template>
+                </q-input>
+              </q-form>
+            </q-card-section>
+          </q-card>
+        </div>
+      </div>
     </div>
 
-    <div class="skill-section">
-      <div class="text-h3 text-white text-center q-mb-lg">What I do</div>
+    <div class="skill-section q-pt-md">
       <div class="row q-gutter-md justify-center">
         <!-- UX/UI Definitions -->
         <div class="col-11 col-md-3">
-          <q-card class="bg-primary" dark style="height: 370px">
+          <q-card class="bg-primary" dark style="height: 400px">
             <q-card-section class="text-center">
-              <img src="~assets/icons/layers.png" alt="" />
-              <div class="text-subtitle1 text-bold">UX/UI Design</div>
+              <q-img
+                width="90px"
+                :class="$q.screen.lt.md ? '' : 'skill-icon'"
+                src="~assets/icons/layers.png"
+                alt=""
+              />
+              <div class="text-subtitle1 text-bold q-mt-xl">UX/UI Design</div>
             </q-card-section>
             <q-card-section>
               <div class="text-body1 text-center">
@@ -66,10 +103,17 @@
         </div>
         <!-- Backend Development -->
         <div class="col-11 col-md-3">
-          <q-card class="bg-primary" dark style="height: 370px">
+          <q-card class="bg-primary" dark style="height: 400px">
             <q-card-section class="text-center">
-              <img src="~assets/icons/coding.png" alt="" />
-              <div class="text-subtitle1 text-bold">Backend Development</div>
+              <q-img
+                width="90px"
+                :class="$q.screen.lt.md ? '' : 'skill-icon'"
+                src="~assets/icons/coding.png"
+                alt=""
+              />
+              <div class="text-subtitle1 text-bold q-mt-xl">
+                Backend Development
+              </div>
             </q-card-section>
             <q-card-section>
               <div class="text-body1 text-center">
@@ -82,10 +126,15 @@
           </q-card>
         </div>
         <div class="col-11 col-md-3">
-          <q-card class="bg-primary" dark style="height: 370px">
+          <q-card class="bg-primary" dark style="height: 400px">
             <q-card-section class="text-center">
-              <img src="~assets/icons/seo.png" alt="" />
-              <div class="text-subtitle1 text-bold">SEO Handling</div>
+              <q-img
+                width="90px"
+                :class="$q.screen.lt.md ? '' : 'skill-icon'"
+                src="~assets/icons/seo.png"
+                alt=""
+              />
+              <div class="text-subtitle1 text-bold q-mt-xl">SEO Handling</div>
             </q-card-section>
             <q-card-section>
               <div class="text-body1 text-center">
@@ -128,7 +177,7 @@
       <q-toolbar class="q-py-sm">
         <q-toolbar-title class="text-center">
           <div class="text-subtitle2">theccman.com</div>
-          <div class="text-caption">All rights reserved. 2022</div>
+          <div class="text-caption">Developed by Clint B. Clarido</div>
           <div style="font-size: 10px">
             Icons made by
             <a
@@ -154,6 +203,8 @@
 </template>
 
 <style lang="sass" scope>
+.bg-tech
+  opacity: .5
 .catchy-line
   padding-top:7%
   color: white
@@ -161,15 +212,36 @@
 //   margin-top: 20px
 .skill-section
   margin-top: 100px
+.skill-icon
+  position: absolute
+  top: -40px
+  left: 130px
 .language-section
   margin-top: 100px
   padding-bottom: 100px
 .language-pill
   height: 60px
   width: 150px
+.newsletter-card
+  max-width: 450px
+  border: 1px solid white
 </style>
 
 <script setup>
+import { ref } from "vue";
+import { guestStore } from "stores/guests";
+
+const emailLoading = ref(false);
+const guestEmail = ref("");
+const addEmail = async () => {
+  emailLoading.value = true;
+  const res = await guestStore().addGuestEmail(guestEmail.value);
+  if (res) {
+    guestEmail.value = "";
+    emailLoading.value = false;
+  }
+};
+
 const languages = [
   { icon: "src/assets/svg/vue-logo.svg", name: "Vue" },
   { icon: "src/assets/svg/firebase-logo.svg", name: "Firebase" },
