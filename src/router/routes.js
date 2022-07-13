@@ -2,22 +2,11 @@ const routes = [
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
-    redirect: "/home",
     children: [
       {
-        path: "/home",
+        path: "/",
         name: "Home",
         component: () => import("pages/main/HomePage.vue"),
-      },
-      {
-        path: "/discussions",
-        name: "Discussions",
-        component: () => import("pages/main/DiscussionsPage.vue"),
-      },
-      {
-        path: "/discussions/create",
-        name: "Create Topic",
-        component: () => import("pages/main/CreateTopic.vue"),
       },
       {
         path: "/projects",
@@ -27,13 +16,28 @@ const routes = [
     ],
   },
 
+  // Admin Auth
+  {
+    path: "/secret",
+    name: "Secret Auth",
+    redirect: "/secret/auth",
+    component: () => import("layouts/AuthLayout.vue"),
+    children: [
+      {
+        path: "/secret/auth",
+        name: "Secret Auth",
+        component: () => import("pages/admin/AuthPage.vue"),
+      },
+    ],
+  },
+
   // Admin Routes
   {
     path: "/admin",
     component: () => import("layouts/AdminLayout.vue"),
-    // meta: {
-    //   requiresAdmin: true,
-    // },
+    meta: {
+      requiresAuth: true,
+    },
     redirect: "/admin/dashboard",
     children: [
       {
@@ -45,6 +49,11 @@ const routes = [
         path: "/admin/manage-projects",
         name: "Manage Projects",
         component: () => import("pages/admin/ManageProjects.vue"),
+      },
+      {
+        path: "/admin/manage-guests",
+        name: "Manage Guests",
+        component: () => import("pages/admin/ManageGuests.vue"),
       },
     ],
   },

@@ -31,12 +31,36 @@
             <q-item-label class="text-subtitle1">Dashboard</q-item-label>
           </q-item-section>
         </q-item>
+        <q-item clickable to="/">
+          <q-item-section avatar>
+            <q-icon name="language" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label class="text-subtitle1">Preview Site</q-item-label>
+          </q-item-section>
+        </q-item>
         <q-item clickable to="/admin/manage-projects">
           <q-item-section avatar>
             <q-icon name="web" />
           </q-item-section>
           <q-item-section>
             <q-item-label class="text-subtitle1">Projects</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable to="/admin/manage-guests">
+          <q-item-section avatar>
+            <q-icon name="groups" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label class="text-subtitle1">Guests</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable @click="logout" class="text-negative">
+          <q-item-section avatar>
+            <q-icon name="logout" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label class="text-subtitle1">Log Out</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -60,6 +84,7 @@
 </template>
 
 <script setup>
+import { authStore } from "src/stores/auth";
 import { ref } from "vue";
 const leftDrawerOpen = ref(false);
 const toggleLeftDrawer = () => (leftDrawerOpen.value = !leftDrawerOpen.value);
@@ -70,4 +95,6 @@ const drawerClick = (e) => {
     e.preventDefault();
   }
 };
+
+const logout = () => authStore().signOut();
 </script>

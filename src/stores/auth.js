@@ -9,6 +9,7 @@ export const authStore = defineStore("auth", {
   persist: true,
   actions: {
     async signinWithEmail(creds) {
+      Loading.show();
       try {
         const userCredential = await fa.signInWithEmailAndPassword(
           auth,
@@ -16,7 +17,8 @@ export const authStore = defineStore("auth", {
           creds.password
         );
         const user = userCredential.user;
-        return true;
+
+        this.router.replace("/admin");
       } catch (err) {
         const errCode = err.code;
         let errMessage;
@@ -37,35 +39,8 @@ export const authStore = defineStore("auth", {
           title: "Failed!",
           message: errMessage,
         });
-
-        return "failed";
-      }
-    },
-
-    async signInWithProvider(payload) {
-      let provider;
-      if (payload == "google") {
-        provider = new fa.GoogleAuthProvider();
-      }
-
-      try {
-        const result = await fa.signInWithPopup(auth, provider);
-        // If user successfully signed up
-        if (result.user) {
-          this.authUser = result.user;
-          return true;
-        }
-      } catch (err) {
-        const errMessage = err.message;
-        // The email of the user's account used.
-        const email = err.email;
-        // The AuthCredential type that was used.
-        const credential = fa.GoogleAuthProvider.credentialFromError(err);
-        // ...
-        Dialog.create({
-          title: "Sorry, signing in error.",
-          message: `We've got trouble for ${email}: ${errMessage}`,
-        });
+      } finally {
+        Loading.hide();
       }
     },
 
@@ -82,36 +57,8 @@ export const authStore = defineStore("auth", {
     async signOut() {
       Loading.show();
       await auth.signOut();
+      this.router.replace("/secret/auth");
       Loading.hide();
-    },
-
-    async signInAsGuest() {
-      await fa.signInAnonymously(auth);
-      return true;
-    },
-
-    async signUpWithEmail(creds) {
-      try {
-        const userCredential = await fa.createUserWithEmailAndPassword(
-          auth,
-          creds.email,
-          creds.password
-        );
-
-        if (userCredential.user) {
-          await fa.updateProfile(userCredential.user, {
-            displayName: creds.name,
-          });
-          this.authUser.displayName = creds.name;
-        }
-
-        return true;
-      } catch (err) {
-        Dialog.create({
-          title: "Sorry, signing up error.",
-          message: `We've got trouble ${err.message}. ${err.code}`,
-        });
-      }
     },
   },
 });

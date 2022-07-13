@@ -1,17 +1,9 @@
 <template>
   <q-page padding class="bg-grey-3">
     <q-card>
-      <q-card-section class="text-h6">Manage Projects</q-card-section>
-      <q-card-actions align="right">
-        <q-btn
-          @click="handleDialog(null)"
-          dense
-          color="primary"
-          label="New Project"
-        />
-      </q-card-actions>
+      <q-card-section class="text-h6">Manage Guest</q-card-section>
       <q-card-section>
-        <projects-table @click-edit="editProj" />
+        <guests-table />
       </q-card-section>
     </q-card>
   </q-page>
@@ -19,7 +11,7 @@
 
 <script setup>
 import { ref } from "vue";
-import ProjectsTable from "components/ProjectsTable.vue";
+import GuestsTable from "components/GuestsTable.vue";
 import ProjectDialog from "components/dialogs/ProjectDialog.vue";
 import { useQuasar } from "quasar";
 

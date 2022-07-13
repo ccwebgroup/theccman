@@ -243,13 +243,13 @@ const addEmail = async () => {
 };
 
 const languages = [
-  { icon: "src/assets/svg/vue-logo.svg", name: "Vue" },
-  { icon: "src/assets/svg/firebase-logo.svg", name: "Firebase" },
-  { icon: "src/assets/svg/laravel-logo.svg", name: "Laravel" },
-  { icon: "src/assets/svg/vuetify-logo.svg", name: "Vuetify" },
-  { icon: "src/assets/svg/php-logo.svg", name: "PHP" },
-  { icon: "src/assets/svg/mysql-logo.svg", name: "Mysql" },
-  { icon: "src/assets/svg/css-logo.svg", name: "CSS" },
-  { icon: "src/assets/svg/graphql-logo.svg", name: "GraphQL" },
+  { icon: "svg-icons/vue-logo.svg", name: "Vue" },
+  { icon: "svg-icons/firebase-logo.svg", name: "Firebase" },
+  { icon: "svg-icons/laravel-logo.svg", name: "Laravel" },
+  { icon: "svg-icons/vuetify-logo.svg", name: "Vuetify" },
+  { icon: "svg-icons/php-logo.svg", name: "PHP" },
+  { icon: "svg-icons/mysql-logo.svg", name: "Mysql" },
+  { icon: "svg-icons/css-logo.svg", name: "CSS" },
+  { icon: "svg-icons/graphql-logo.svg", name: "GraphQL" },
 ];
 </script>

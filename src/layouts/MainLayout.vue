@@ -17,7 +17,7 @@
           <span v-if="!$q.screen.lt.md">TheCCMan</span>
         </q-toolbar-title>
         <q-tabs no-caps shrink v-if="!$q.screen.lt.md">
-          <q-route-tab to="/home" label="Home" exact />
+          <q-route-tab to="/" label="Home" exact />
           <q-route-tab to="/projects" label="Projects" />
           <!-- <q-route-tab to="/discussions" label="Discussions" /> -->
         </q-tabs>
@@ -60,7 +60,7 @@
         </q-avatar>
       </div>
       <q-list dark class="q-mt-lg q-mx-md">
-        <q-item clickable to="/home" v-ripple exact>
+        <q-item clickable to="/" v-ripple exact>
           <q-item-section avatar>
             <q-icon name="home" />
           </q-item-section>
@@ -106,7 +106,7 @@
   </q-layout>
 </template>
 
-<style lang="sass" scope>
+<style lang="sass" scoped>
 .q-tab__label
     font-size: 18px
 .q-item.q-router-link--active, .q-item--active
