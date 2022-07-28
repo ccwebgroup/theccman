@@ -43,7 +43,7 @@ export const projectStore = defineStore("projects", {
           updatedAt: fs.serverTimestamp(),
         });
 
-        const i = this.allProjects.findIndex((item) => (item.id = project.id));
+        const i = this.allProjects.findIndex((item) => item.id == project.id);
         if (i > -1) {
           this.allProjects[i] = {
             ...project,

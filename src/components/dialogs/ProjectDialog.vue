@@ -1,22 +1,38 @@
 <template>
-  <q-dialog ref="dialogRef" @hide="onDialogHide">
+  <q-dialog
+    ref="dialogRef"
+    @hide="onDialogHide"
+    maximized
+    transition-show="slide-up"
+    transition-hide="slide-down"
+  >
     <q-card>
       <q-card-section class="text-center text-h5"
         >{{ project ? "Edit" : "New" }} Project</q-card-section
       >
       <q-card-section>
         <q-form @submit="project ? saveProject() : addProject()">
-          <q-input
-            dense
-            v-model="projectForm.title"
-            placeholder="Project Title"
-            outlined
-            maxlength="86"
-            counter
-            :rules="[(val) => !!val || 'Headline is required!']"
-          />
-          <div class="row q-gutter-x-sm justify-between q-mb-sm">
+          <div class="row q-gutter-sm justify-between q-mb-sm">
             <div class="col-12 col-md-6">
+              <q-input
+                dense
+                v-model="projectForm.title"
+                placeholder="Project Title"
+                outlined
+                maxlength="86"
+                counter
+                :rules="[(val) => !!val || 'Headline is required!']"
+              />
+            </div>
+            <div class="col-12 col-md-5">
+              <q-input
+                dense
+                v-model="projectForm.site"
+                placeholder="Project site"
+                outlined
+              />
+            </div>
+            <div class="col-12 col-md-4">
               <q-input
                 dense
                 outlined
@@ -47,7 +63,7 @@
                 </template>
               </q-input>
             </div>
-            <div class="col-12 col-md-auto">
+            <div class="col-12 col-md-4">
               <q-input
                 dense
                 outlined
@@ -77,16 +93,17 @@
                 </template>
               </q-input>
             </div>
+            <div class="col-12 col-md-3">
+              <q-select
+                dense
+                outlined
+                v-model="projectForm.status"
+                :options="['Ongoing', 'Completed', 'Stopped']"
+                hint="Status"
+                :rules="[(val) => !!val || 'Headline is required!']"
+              />
+            </div>
           </div>
-
-          <q-select
-            dense
-            outlined
-            v-model="projectForm.status"
-            :options="['Ongoing', 'Completed', 'Stopped']"
-            hint="Status"
-            :rules="[(val) => !!val || 'Headline is required!']"
-          />
 
           <q-editor
             :dense="$q.screen.lt.md"
@@ -150,6 +167,7 @@ const projectForm = reactive({
   started: "",
   completed: "",
   status: "",
+  site: "",
 });
 
 onBeforeMount(() => {
@@ -165,6 +183,7 @@ const clear = () => {
   projectForm.started = "";
   projectForm.completed = "";
   projectForm.status = "";
+  projectForm.site = "";
 };
 
 const saveProject = async () => {
